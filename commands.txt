@@ -1,0 +1,8 @@
+cd /opt/docker
+docker build -t app_demo .
+docker tag app_demo devmaheshbg/app_demo
+docker push devmaheshbg/app_demo
+docker rmi app_demo devmaheshbg/app_demo
+
+cd /opt/playbooks
+ansible-playbook -i /opt/playbooks/hosts /opt/playbooks/create_docker_container.yml

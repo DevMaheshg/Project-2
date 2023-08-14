@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  
+   - name: stop previous version docker
+     shell: docker stop app_demo
+     
+   - name: remove stopped container
+     shell: docker rm -f app_demo
+     
+   - name: remove docker images
+     shell: docker image rm -f devmaheshbg/app_demo
+     
+   - name: create docker container
+     shell: docker run -d --name app_demo -p 8080:8080 devmaheshbg/app_demo
